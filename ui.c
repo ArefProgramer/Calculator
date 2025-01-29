@@ -5,19 +5,17 @@ void windowel(HWND hwnd){
 
 //Menu
 HMENU hMenu = CreateMenu();
-            HMENU hFileMenu = CreateMenu();
+HMENU hFileMenu = CreateMenu();
 
-            AppendMenu(hMenu, MF_POPUP, (UINT_PTR)hFileMenu, "Program");
-            AppendMenu(hFileMenu, MF_STRING, 17, "About");
-
-            AppendMenu(hFileMenu, MF_SEPARATOR, 000, NULL);
-            AppendMenu(hFileMenu, MF_STRING, 19, "Exit");
-
-            SetMenu(hwnd, hMenu);
+AppendMenu(hMenu, MF_POPUP, (UINT_PTR)hFileMenu, "Program");
+AppendMenu(hFileMenu, MF_STRING, 17, "About");
+AppendMenu(hFileMenu, MF_SEPARATOR, 000, NULL);
+AppendMenu(hFileMenu, MF_STRING, 19, "Exit");
+SetMenu(hwnd, hMenu);
             
 
-
-      int size =50;    
+//Button
+int size =50;    
  HWND Button7 = CreateWindow("BUTTON","7",WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,0, 22, size, 25,hwnd, (HMENU) 7,(HINSTANCE)GetWindowLongPtr(hwnd, GWLP_HINSTANCE), NULL);
  HWND Button8 = CreateWindow("BUTTON","8",WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,60, 22, size, 25,hwnd, (HMENU) 8,(HINSTANCE)GetWindowLongPtr(hwnd, GWLP_HINSTANCE), NULL);
  HWND Button9 = CreateWindow("BUTTON","9",WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,120, 22, size, 25,hwnd, (HMENU) 9,(HINSTANCE)GetWindowLongPtr(hwnd, GWLP_HINSTANCE), NULL);

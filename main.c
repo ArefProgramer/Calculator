@@ -1,11 +1,14 @@
+//library
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <windows.h>
 #include <math.h>
 #include "ui.c"
+
+
 char buffer[256];
-char name[50] = "Calculator++";
+
 int a, b,d,c;
 
 HWND hwndTextbox; // Define the textbox globally
@@ -20,15 +23,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     wc.lpfnWndProc = WindowProc;
     wc.hInstance = hInstance;
     wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1); // Set background color to default system color
-    wc.lpszClassName = name;
+    wc.lpszClassName = "Calculator++";
 
     RegisterClass(&wc);
 
     // Create the window
     HWND hwnd = CreateWindowEx(
         0,                              
-        name, 
-        name,               
+        "Calculator++", 
+        "Calculator++",               
         WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU,  // Window style without resize
         CW_USEDEFAULT, CW_USEDEFAULT, 175, 288,
         NULL,       
@@ -60,16 +63,14 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
             return 0;
 
         case WM_CREATE:
-            hwndTextbox = CreateWindow(
-                "EDIT", "",
-                WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
-                0, 0, 170, 20,
-                hwnd, (HMENU) 16, (HINSTANCE)GetWindowLongPtr(hwnd, GWLP_HINSTANCE), NULL
-            );
-            windowel(hwnd);
+            
+            hwndTextbox = CreateWindow("EDIT", "",WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,0, 0, 170, 20,hwnd, (HMENU) 16, (HINSTANCE)GetWindowLongPtr(hwnd, GWLP_HINSTANCE), NULL);//Textbox
+            
+            windowel(hwnd);//This is a function for other Button ,....
+
             break;
 
-        case WM_COMMAND:
+        case WM_COMMAND:// Work Button
             if (LOWORD(wParam) == 1) {
                 // Get current text
                 GetWindowText(hwndTextbox, buffer, sizeof(buffer));
@@ -219,7 +220,7 @@ a=c;
                  SetWindowText(hwndTextbox, "");
               }    else if(LOWORD(wParam) == 17) {
                
-  MessageBoxA(hwnd, "Calculator++ Version 1.0.0 Copyright (C) 2025\nCreate by Aref Sadegh","Calculator++ - About" ,MB_ICONINFORMATION);
+  MessageBoxA(hwnd, "Calculator++ Version 1.0.0 Copyright (C) 2025\nCreate by Aref Sadegh","Calculator++ - About" ,MB_ICONINFORMATION);//messagebox for about of Program
               
             }
                else if(LOWORD(wParam) == 18) {
